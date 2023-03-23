@@ -1,5 +1,4 @@
 
-
 Sarmad Kubba
 CNE370
 # Project Title
@@ -50,7 +49,7 @@ CONTAINER ID   IMAGE                     COMMAND                  CREATED       
 0d917934af7f   mariadb:latest            "docker-entrypoint.s…"   46 hours ago   Up 46 hours   0.0.0.0:4001->3306/tcp, :::4001->3306/tcp                                                        maxscale_master1_1
 
 ffd8334a52f4   mariadb:latest            "docker-entrypoint.s…"   46 hours ago   Up 46 hours   0.0.0.0:4003->3306/tcp, :::4003->3306/tcp                                                        maxscale_master2_1
- 
+![image](https://user-images.githubusercontent.com/83927120/227092347-ec29cc6b-7aa5-46ef-a137-83c8a8747951.png)
 
 Check if the servers are running and connecting the ports, use this command.
 root@Maxscale:/home/sarmad/maxscale/maxscale-docker/maxscale# docker-compose exec maxscale maxctrl list servers
@@ -67,10 +66,7 @@ root@Maxscale:/home/sarmad/maxscale/maxscale-docker/maxscale# docker-compose exe
 │ server2 │ master2 │ 3306 │ 0           │ Master, Running │      │ MariaDB-Monitor │
 
 └─────────┴─────────┴──────┴─────────────┴─────────────────┴──────┴─────────────────┘
-
-
- 
-
+![image](https://user-images.githubusercontent.com/83927120/227092595-4f69ce59-d57a-4a74-b4e0-355bdd94ef25.png)
 
 check if master down how to master2 become master1 and use this command. 
 docker-compose stop master.
@@ -92,8 +88,24 @@ root@Maxscale:/home/sarmad/maxscale/maxscale-docker/maxscale# docker-compose exe
 │ server2 │ master2 │ 3306 │ 0           │ Master, Running │      │ MariaDB-Monitor │
 
 └─────────┴─────────┴──────┴─────────────┴─────────────────┴──────┴─────────────────┘
+![image](https://user-images.githubusercontent.com/83927120/227092744-c144b62a-f38b-46e6-bb0c-112d0e310ba5.png)
 
- 
+Same with Master2 we can see how we can be down :
+root@Maxscale:/home/sarmad/maxscale/maxscale-docker/maxscale# docker-compose stop master2
+┌─────────┬─────────┬──────┬─────────────┬─────────────────┬──────┬─────────────────┐
+
+│ Server  │ Address │ Port │ Connections │ State           │ GTID │ Monitor         │
+
+├─────────┼─────────┼──────┼─────────────┼─────────────────┼──────┼─────────────────┤
+
+│ server1 │ master1 │ 3306 │ 0           │ Master, Running │      │ MariaDB-Monitor │
+
+├─────────┼─────────┼──────┼─────────────┼─────────────────┼──────┼─────────────────┤
+
+│ server2 │ master2 │ 3306 │ 0           │ Down            │      │ MariaDB-Monitor │
+
+└─────────┴─────────┴──────┴─────────────┴─────────────────┴──────┴─────────────────┘
+![image](https://user-images.githubusercontent.com/83927120/227092881-4c6e020f-5d5c-4801-acc4-e8846e3f1f11.png)
 
 Now create client to access the databases.using this commands
 This is the way you can access your data from mysql console.
@@ -108,11 +120,7 @@ Server version: 10.11.2-MariaDB-1:10.11.2+maria~ubu2204-log mariadb.org binary d
 Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
 
 Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
-
-
-
-
- 
+![image](https://user-images.githubusercontent.com/83927120/227093070-a89fbd78-1dc5-4ee5-9c79-d3a8f6d95eef.png)
 
 Now we can use this command to show the databases in our server
 MariaDB [(none)]> show databases;
@@ -138,11 +146,10 @@ MariaDB [(none)]> show databases;
 +--------------------+
 
 6 rows in set (0.001 sec)
+![image](https://user-images.githubusercontent.com/83927120/227093225-bdff938b-5aa3-482d-97db-0731a425efda.png)
 
-
- 
 I can use command use to access both servers from my maxscale server
- 
+![image](https://user-images.githubusercontent.com/83927120/227093384-949d3bac-780f-4542-b31a-84ee93030235.png)
 
 ## Using python to access remotely our maxscale server 
 
@@ -161,8 +168,7 @@ The last 10 rows of zipcodes_one are:
 (40119, 'STANDARD', 'FALLS OF ROUGH', 'KY', 'PRIMARY', '37.6', '-86.55', 'NA-US-KY-FALLS OF ROUGH', 'FALSE', '760', '1468', '20771670')
 (42039, 'STANDARD', 'FANCY FARM', 'KY', 'PRIMARY', '36.75', '-88.79', 'NA-US-KY-FANCY FARM', 'FALSE', '696', '1317', '20643485')
 (40319, 'PO BOX', 'FARMERS', 'KY', 'PRIMARY', '38.14', '-83.54', 'NA-US-KY-FARMERS', 'FALSE', '', '', '')
-
- 
+![image](https://user-images.githubusercontent.com/83927120/227094060-3c31f15f-407a-40de-ad5d-c9c0ac1b98ce.png)
 
 The first 10 rows of zipcodes_two are:
 (42040, 'STANDARD', 'FARMINGTON', 'KY', 'PRIMARY', '36.67', '-88.53', 'NA-US-KY-FARMINGTON', 'FALSE', '465', '896', '11562973')
@@ -175,14 +181,16 @@ The first 10 rows of zipcodes_two are:
 (40935, 'STANDARD', 'FLAT LICK', 'KY', 'PRIMARY', '36.82', '-83.76', 'NA-US-KY-FLAT LICK', 'FALSE', '752', '1477', '14267237')
 (40997, 'STANDARD', 'WALKER', 'KY', 'PRIMARY', '36.88', '-83.71', 'NA-US-KY-WALKER', 'FALSE', '', '', '')
 (41139, 'STANDARD', 'FLATWOODS', 'KY', 'PRIMARY', '38.51', '-82.72', 'NA-US-KY-FLATWOODS', 'FALSE', '3692', '6748', '121902277')
+![image](https://user-images.githubusercontent.com/83927120/227094157-31219c99-9f11-4727-8b3b-a4b6f1c95f25.png)
 
- 
 The largest zip code number in zipcodes_one is:
 (47750,)
- 
+![image](https://user-images.githubusercontent.com/83927120/227094223-1b8a6091-3418-421d-b72d-2955f03a9fe4.png)
+
 The smallest zip code number in zipcodes_two is:
 (38257,)
- 
+![image](https://user-images.githubusercontent.com/83927120/227094354-ae02a412-2a88-4224-af7c-9ffaa1c98910.png)
+
 ## Thanks
  I worked this project with our tutor Abdirizak kulmiye.
 Sources
@@ -192,8 +200,3 @@ https://docs.docker.com/compose/compose-file/
 https://github.com/Zohan/maxscale-docker
 https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-18-04
 https://docker-curriculum.com/#what-are-containers-
-
-
- 
-
-
