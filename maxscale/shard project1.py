@@ -1,3 +1,8 @@
+#Name:Sarmad Kubba
+#Class:CNE370
+#Email:snabdulrazzaq@student.rtc.edu
+#Date:03/24/2023
+#This python code is for finding: The last 10 rows of zipcodes_one, the first 10 rows of zipcodes_two, the largest zip code number in zipcodes_one and the smallest zip code number in zipcodes_two.
 import pymysql
 db = pymysql.connect(host="10.0.0.44", port=4000, user="maxuser", passwd="maxpwd")
 cursor = db.cursor()
